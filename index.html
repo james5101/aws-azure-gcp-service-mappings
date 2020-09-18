@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+</head>
+<body>
+
+<h2>Cloud Service Equivalents by Provider</h2>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for AWS service to see its equivalent in other cloud providers" title="Type in a service">
+
+<table id="myTable">
+  <tr class="header">
+    <th style="width:33%;">AWS</th>
+    <th style="width:33%;">Azure</th>
+    <th style="width:33%;">GCP</th>
+  </tr>
+  <tr>
+    <td>AWS EC2</td>
+    <td>Virtual Machines</td>
+    <td>Virtual Machines</td>
+  </tr>
+  <tr>
+    <td>Amazon EC2 Autoscaling</td>
+    <td>Azure Virtual Machine Scale Sets</td>
+    <td>Managed Instance Groups</td>
+  </tr>
+  <tr>
+    <td>Elastic Container Service (ECS)</td>
+    <td>Azure Container Service (ACS)</td>
+    <td>Containers on Compute Engine</td>
+  </tr>
+  <tr>
+    <td>Elastic Container Registry (ECR)</td>
+    <td>Azure Container Registry (ACR)</td>
+    <td>Google Container Registry (GCR)</td>
+  </tr>
+  <tr>
+    <td>Amazon Elastic Kubernetes Service (EKS)</td>
+    <td>Azure Kubernetes Service (AKS)</td>
+    <td>Google Kubernetes Engine (GKE)</td>
+  </tr>
+  <tr>
+    <td>Amazon Lambda</td>
+    <td>Azure Functions (AKS)</td>
+    <td>Cloud Functions (GKE)</td>
+  </tr>
+  <tr>
+    <td>AWS Fargate</td>
+    <td>Azure Container Instances (ACI)</td>
+    <td>Google Cloud Run</td>
+  </tr>
+  <tr>
+    <td>Amazon RDS</td>
+    <td>SQL Database</td>
+    <td>Google Cloud SQL</td>
+  </tr>
+  <tr>
+    <td>Amazon DynamoDB</td>
+    <td>Azure DocumentDB</td>
+    <td>Google Cloud Datastore</td>
+  </tr>
+</table>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+</body>
+</html>
